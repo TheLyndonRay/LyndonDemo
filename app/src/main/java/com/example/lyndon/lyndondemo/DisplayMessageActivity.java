@@ -6,9 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
 import android.widget.TextView;
-//
-//
-//
+
 
 public class DisplayMessageActivity extends Activity {
 
