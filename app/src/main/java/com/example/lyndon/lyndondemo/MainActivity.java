@@ -13,6 +13,9 @@ import android.view.MenuInflater;
 public class MainActivity extends Activity {
     public final static String EXTRA_MESSAGE = "com.example.LyndonDemo.MESSAGE";
 
+    // request code for startActivityForResult
+    private final int GET_NAME_REQUEST_CODE = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,5 +57,17 @@ public class MainActivity extends Activity {
         String message = editText.getText().toString();
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
+    }
+
+
+    public void startSecondActivity(View view){
+        Intent i = new Intent(MainActivity.this, SecondActivity.class);
+        startActivityForResult(i, GET_NAME_REQUEST_CODE);
+    }
+
+    //called automatically when the SecondActivity which was started with startActivityResult is finished
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
