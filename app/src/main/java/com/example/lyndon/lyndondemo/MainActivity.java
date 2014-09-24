@@ -4,10 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.view.MenuInflater;
+import android.widget.Toast;
 
 
 public class MainActivity extends Activity {
@@ -62,6 +63,7 @@ public class MainActivity extends Activity {
 
     public void startSecondActivity(View view){
         Intent i = new Intent(MainActivity.this, SecondActivity.class);
+        i.putExtra("niceDay", true); // key value pair
         startActivityForResult(i, GET_NAME_REQUEST_CODE);
     }
 
@@ -69,5 +71,12 @@ public class MainActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            String name = data.getStringExtra("name");
+        } else {
+            Toast.makeText(this, "No data received", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }
